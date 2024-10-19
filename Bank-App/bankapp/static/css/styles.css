@@ -1,0 +1,240 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
+    margin: 0;
+    
+    background-color: #1e1e1e; /* Dark gray background like VS Code */
+    color: #ffffff; /* White text */
+}
+
+h1 {
+    color: #cebd70; /* White color for headings */
+    margin: 5vh;
+    font-size: 8vh;
+}
+
+p {
+    color: #c5c5c5; /* Slightly lighter gray for regular text */
+}
+
+button {
+    padding: 1vh;
+    color: #ffffff;
+    background-color: #6b5594;
+    border: none;
+    cursor: pointer;
+    margin: 3vh;
+    border-radius: 1vh;
+    font-family: 'Impact', sans-serif; /* Set the font family to Impact */
+    font-size: 4vh;
+}
+
+button:hover {
+    background-color: #722ca1;
+    transform: scale(1.1);
+    color: white;
+}
+
+label {
+    display: block;
+    margin-bottom: 1vh;
+    color: '#FFF';
+}
+
+input, .form-select {
+    width: 100%;
+    padding: 1vh;
+    margin-top: 1vh;
+    border-radius: 1vh;
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    
+    background-color: #2e2e2e; /* Lighter gray than body background */
+    color: #ffffff; /* White input text */
+    
+    outline: none; /* Disable default outline */
+    box-shadow: none; /* Disable focus shadow */
+}
+
+input:focus, .form-select:focus {
+    outline: none; /* No outline when focused */
+    box-shadow: none; /* No shadow when focused */
+}
+
+input::placeholder {
+    color: #c5c5c5; /* Slightly lighter gray for placeholder text */
+}
+
+.form-select {
+    background-color: #2e2e2e; /* Same as input */
+    color: #ffffff;
+    border-radius: 1vh;
+}
+
+.form-select:focus {
+    box-shadow: none;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1vh 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 2vh;
+    padding: 2vh;
+    display: block;
+}
+
+/* Hover state */
+.navbar ul li a:hover {
+    background-color: #555;
+    color: #ad39fa;
+    transform: scale(1.1); /* Scale up the link on hover */
+}
+
+/* Active link styling */
+.navbar ul li a.active {
+    background-color: #444;
+    color: #ad39fa; /* Distinct color for the active link */
+    font-size: 1.2em; /* Make active link bigger */
+    transform: scale(1.1); /* Scale active link */
+}
+
+/* Add padding to the content below the navbar */
+.account-details {
+    margin-top: 5vh; /* Adjust based on your navbar height */
+}
+
+.account-details.h1{
+    margin: 5vh;
+    font-size: 8vh;
+}
+
+.account-details.p{
+    margin: 5vh;
+    font-size: 5vh;
+}
+
+.transfer-form {
+    max-width: 60vw;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 2vh;
+    cursor: pointer;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 2vh;
+    font-weight: bold;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    padding: 1vh;
+    margin-top: 1vh;
+    border-radius: 1vh;
+    border: none;
+    text-align: left;
+    box-sizing: border-box;
+    
+    background-color: #2e2e2e; /* Same as input */
+    color: #ffffff; /* White text */
+}
+
+.category-row {
+    margin-bottom: 2vh;
+}
+
+button {
+    padding: 1vh;
+    color: #ffffff;
+    background-color: #6b5594;
+    border: none;
+    cursor: pointer;
+    margin: 3vh;
+    border-radius: 1vh;
+    font-family: 'Impact', sans-serif; /* Set the font family to Impact */
+    font-size: 4vh;
+}
+
+.form-submit-btn:hover {
+    background-color: #722ca1;
+    transform: scale(1.1);
+    color: white;
+}
+.transaction-positive {
+    color: green;
+}
+
+.transaction-negative {
+    color: red;
+}
+
+.transaction-withdrawal {
+    color: red;
+}
+
+/* Initially hide the filter form */
+.transaction-filters {
+    display: none;
+}
+
+/* Transaction list with black background and opacity */
+.transactions-list {
+    background-color: rgba(0, 0, 0, 0.3); /* Black background with 0.3 opacity */
+    padding: 5vh;
+    border-radius: 5vh;
+    margin-top: 2vh;
+    width: 80%;
+    max-width: 80vw;
+    margin: 0 auto;
+    color: #fff; /* Ensure text remains white for contrast */
+}
+
+.filter-toggle-btn {
+    padding: 2vh;
+    background-color: #6b5594;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1vh;
+    border-radius: 1vh;
+}
+
+.filter-toggle-btn:hover {
+    background-color: #722ca1;
+}

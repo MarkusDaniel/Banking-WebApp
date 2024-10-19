@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw</title>
+    {% load static %}
+    <!-- Link to the external CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'account_detail' account_number=account.account_number %}">Account</a></li>
+            <li><a href="{% url 'transactions' account.account_number %}">View Transactions</a></li>
+            <li><a href="{% url 'transfer' account.account_number %}">Transfer Money</a></li>
+            <li><a href="{% url 'cashup' account.account_number %}">Cashup</a></li>
+            <li><a href="{% url 'withdraw' account.account_number %}">Withdraw</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <div class="withdraw-form">
+        <h1>Withdraw</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="1" required>
+            <button type="submit">Withdraw</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transfer Money</title>
+    {% load static %}
+    <!-- Link to the external CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'account_detail' account_number=account.account_number %}">Account</a></li>
+            <li><a href="{% url 'transactions' account.account_number %}">View Transactions</a></li>
+            <li><a href="{% url 'transfer' account.account_number %}">Transfer Money</a></li>
+            <li><a href="{% url 'cashup' account.account_number %}">Cashup</a></li>
+            <li><a href="{% url 'withdraw' account.account_number %}">Withdraw</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="transfer-form">
+        <h1>Transfer</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="recipient_account_number" class="form-label">Recipient Account Number:</label>
+                <input type="text" id="recipient_account_number" name="recipient_account_number" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="amount" class="form-label">Amount:</label>
+                <input type="number" id="amount" name="amount" class="form-input" min="1" required>
+            </div>
+
+            <div class="form-group category-row">
+                <label for="category" class="form-label">Category:</label>
+                <select id="category" name="category" class="form-select" required>
+                    <option value="food">Food</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="utilities">Utilities</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="form-submit-btn">Transfer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

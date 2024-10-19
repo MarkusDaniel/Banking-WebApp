@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transactions</title>
+    {% load static %}
+    <!-- Link to the external CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'account_detail' account_number=account.account_number %}">Account</a></li>
+            <li><a href="{% url 'transactions' account.account_number %}">View Transactions</a></li>
+            <li><a href="{% url 'transfer' account.account_number %}">Transfer Money</a></li>
+            <li><a href="{% url 'cashup' account.account_number %}">Cashup</a></li>
+            <li><a href="{% url 'withdraw' account.account_number %}">Withdraw</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Transactions</h1>
+    
+    <!-- Button to toggle filters -->
+    <button id="filterToggle" class="filter-toggle-btn">Filters</button>
+
+    <!-- Filter Form -->
+    <div class="transaction-filters" id="filterForm">
+        <form method="GET" action="{% url 'transactions' account.account_number %}">
+            <label for="category">Category:</label>
+            <select name="category" id="category" class="form-select">
+                <option value="">All</option>
+                <option value="food">Food</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="utilities">Utilities</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="transaction_type">Transaction Type:</label>
+            <select name="transaction_type" id="transaction_type" class="form-select">
+                <option value="">All</option>
+                <option value="deposit">Deposit</option>
+                <option value="withdrawal">Withdrawal</option>
+                <option value="transfer">Transfer</option>
+            </select>
+
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date" class="form-input">
+
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" class="form-input">
+
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+
+    <div class="transactions-list">
+        {% if transactions %}
+            <ul id="transactionsList">
+            {% for transaction in transactions %}
+                <li class="{% if transaction.transaction_type == 'withdrawal' or transaction.amount < 0 %}transaction-negative{% else %}transaction-positive{% endif %}">
+                    {{ transaction.transaction_type }} 
+                    - {{ transaction.category }} 
+                    - {{ transaction.amount }} 
+                    ({{ transaction.transaction_date }})
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No transactions available.</p>
+        {% endif %}
+    </div>
+
+    <!-- Add Export Button for PDF -->
+    <div class="export-buttons">
+        <form method="GET" action="{% url 'export_transactions_pdf' account_number=account.account_number %}">
+            <input type="hidden" name="category" value="{{ request.GET.category }}">
+            <input type="hidden" name="transaction_type" value="{{ request.GET.transaction_type }}">
+            <input type="hidden" name="start_date" value="{{ request.GET.start_date }}">
+            <input type="hidden" name="end_date" value="{{ request.GET.end_date }}">
+            <button type="submit" class="btn btn-primary">Export to PDF</button>
+        </form>
+    </div>
+
+    <!-- Add JavaScript to toggle filter visibility -->
+    <script>
+        document.getElementById("filterToggle").addEventListener("click", function() {
+            var filterForm = document.getElementById("filterForm");
+            var button = document.getElementById("filterToggle");
+            
+            // Toggle the form's visibility
+            if (filterForm.style.display === "none" || filterForm.style.display === "") {
+                filterForm.style.display = "block";
+                button.textContent = "Hide Filters"; // Change button text to "Hide Filters"
+            } else {
+                filterForm.style.display = "none";
+                button.textContent = "Filters"; // Change button text back to "Filters"
+            }
+        });
+    </script>
+</body>
+</html>
